@@ -111,7 +111,6 @@ body {
   max-height: 100%;
   width: auto;
   border-radius: 5px;
-  z-index: 1;
 }
 
 .container .image-cont {
