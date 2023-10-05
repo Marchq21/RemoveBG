@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RemoveBG</title>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -26,7 +25,10 @@
         <div class="image-cont">
           <img id="display-img" src="" alt="" />
         </div>
-        <button id="startBtn">Start</button>
+        <div class="btn-wrapper">
+          <button id="cancelBtn" class="cancel-btn">Cancel</button>
+          <button id="startBtn" class="start-btn">Start</button>
+        </div>
       </div>
       <!-- Loading Card -->
       <div class="card" id="loadingCard">
@@ -35,26 +37,17 @@
       <!-- Download Card -->
       <div class="card" id="downloadCard">
         <div class="image-cont">
-          <img
-            class="image-before"
-            src="https://i.ibb.co/FxwzdMH/andraw-Tate.png"
-            alt=""
-          />
-          <img
-            class="image-after"
-            src="https://i.ibb.co/TvQbyj8/andraw-Tate-afterpng.png"
-            alt=""
-          />
+          <img class="image-before" src="" alt="" />
+          <img class="image-after" src="" alt="" />
         </div>
-        <div style="display: flex; gap: 10px">
+        <div class="btn-wrapper">
           <button id="uploadAnother">Upload Another</button>
           <button style="padding: 10px 40px">
-            <a id="downloadHref" download="transparentImage"> Download </a>
+            <a id="downloadImage" download="transparentImage"> Download </a>
           </button>
         </div>
       </div>
     </div>
-
     <script src="js/scripts.js"></script>
   </body>
 </html>
