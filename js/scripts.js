@@ -7,6 +7,8 @@ const displayImage = document.getElementById("display-img");
 const startBtn = document.getElementById("startBtn");
 const afterImage = document.querySelector(".image-after");
 const beforeImage = document.querySelector(".image-before");
+const uploadAnother = document.getElementById("uploadAnother");
+const downloadImage = document.getElementById("downloadImage");
 const API_URL = "https://api.remove.bg/v1.0/removebg";
 const API_KEY = "sXCA4uVR3UtRaT2yfbuYyBxB";
 
@@ -26,7 +28,6 @@ fileInput.addEventListener("input", () => {
   file = fileInput.files[0];
   reader.readAsDataURL(file);
   reader.onloadend = () => {
-    console.log(reader.result);
     displayImage.src = reader.result;
     beforeImage.src = reader.result;
   };
@@ -35,48 +36,33 @@ fileInput.addEventListener("input", () => {
 
 const formData = new FormData();
 
-// startBtn.addEventListener("click", () => {
-//   //   formData.append("size", "auto");
-//   formData.append("image_file", file);
-//   activeCard(loadingCard);
-//   fetch(API_URL, {
-//     method: "POST",
-//     headers: {
-//       "X-Api-Key": API_KEY,
-//     },
-//     body: formData,
-//   })
-//     .then((response) => {
-//       console.log(response);
-//       response.blob();
-//     })
-//     .then((data) => {
-//       console.log(data);
-//       activeCard(downloadCard);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// });
-
 startBtn.addEventListener("click", () => {
-  //   formData.append("size", "auto");
+  formData.append("size", "auto");
   formData.append("image_file", file);
   activeCard(loadingCard);
-  axios({
-    method: "post",
-    url: API_URL,
-    data: formData,
+  fetch(API_URL, {
+    method: "POST",
     headers: {
       "X-Api-Key": API_KEY,
     },
-  }).then((res) => {
-    console.log(res);
-    reader.readAsDataURL(res.data);
-    reader.onloadend = () => {
-      afterImage.src = reader.result;
-    };
-    // afterImage.src = res.data;
-    activeCard(downloadCard);
-  });
+    body: formData,
+  })
+    .then((response) => {
+      return response.blob();
+    })
+    .then((data) => {
+      reader.readAsDataURL(data);
+      reader.onloadend = () => {
+        afterImage.src = reader.result;
+        downloadImage.setAttribute("href", reader.result);
+      };
+      activeCard(downloadCard);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+uploadAnother.addEventListener("click", () => {
+  activeCard(addCard);
 });
