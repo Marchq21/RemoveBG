@@ -59,6 +59,12 @@ body {
   border-style: dashed;
 }
 
+.btn-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
 .container .card button {
   border: none;
   outline: none;
@@ -73,9 +79,19 @@ body {
   cursor: pointer;
 }
 
+.container .card button.cancel-btn {
+  background-color: #6c757d;
+  box-shadow: 0px 5px 0px 0px #5c636a;
+}
+
 .container .card button:active {
   box-shadow: 0px 0px 0px 0px #216aae;
   transform: translateY(5px);
+}
+
+.container .card button.cancel-btn:active {
+  box-shadow: 0px 0px 0px 0px #5c636a;
+  ;
 }
 
 .container button#uploadAnother {
